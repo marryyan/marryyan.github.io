@@ -134,11 +134,11 @@
                         
                         
                         <li>
-                            <a href="/categories/test/">test</a>
+                            <a href="/categories/CSS/">CSS</a>
                         </li>
                         
                         <li>
-                            <a href="/categories/CSS/">CSS</a>
+                            <a href="/categories/test/">test</a>
                         </li>
                         
                         
@@ -160,11 +160,11 @@
                         
                         
                         <li>
-                            <a href="/tags/first/">first</a>
+                            <a href="/tags/Less/">Less</a>
                         </li>
                         
                         <li>
-                            <a href="/tags/Less/">Less</a>
+                            <a href="/tags/first/">first</a>
                         </li>
                         
                         
@@ -225,6 +225,15 @@
     </div>
 </article>
 
+
+<div id="comments-template"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script>
+	if(!window.commentConfig) {
+      window.commentConfig = {}
+      window.commentConfig.title = 'categories'
+    }
+</script>
 
 
                 </div>
@@ -355,9 +364,9 @@
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/first/" style="font-size: 18.42766295369511px;" class="tag-cloud-link">first</a>
+    <a href="/tags/Less/" style="font-size: 8.715220699179588px;" class="tag-cloud-link">Less</a>
     
-    <a href="/tags/Less/" style="font-size: 13.130437589468862px;" class="tag-cloud-link">Less</a>
+    <a href="/tags/first/" style="font-size: 19.985053475798672px;" class="tag-cloud-link">first</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
@@ -462,5 +471,25 @@
 <script src="/js/oni.js"></script>
 
 
+
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    if(window.commentConfig) {
+      window.commentConfig.owner = '532615057@qq.com'
+      window.commentConfig.repo = 'https://github.com/marryyan/repo.git'
+      window.commentConfig.client_id = 'b25863edcfdaa06d239a'
+      window.commentConfig.client_secret = '547f1d303891de9ff770f7f6465da1769c7bab60'
+      window.commentConfig.redirect_uri = ''
+    } else {
+      window.commentConfig = {
+        owner: '532615057@qq.com',
+        repo: 'https://github.com/marryyan/repo.git',
+        client_id: 'b25863edcfdaa06d239a',
+        client_secret: '547f1d303891de9ff770f7f6465da1769c7bab60',
+        redirect_uri: ''
+      }
+    }
+</script>
+<script src="/js/comment/gitment.js"></script>
 
 </html>
