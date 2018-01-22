@@ -12,7 +12,7 @@
     
     
     
-    <title>archive_a | Paranoid</title>
+    <title>Less, Sass和Stylus | Paranoid</title>
     <link href=”http://marryyan.github.io“ rel=”prefetch” />
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -115,7 +115,7 @@
                 
                 
                 
-                <li class="current">
+                <li class="">
                     <a href="/archives">
                         <i class="fa fa-archive"></i>归档
                     </a>
@@ -190,19 +190,34 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    <article class="article well article-body" id="article-archive">
+                    
+<article class="article well article-body" id="article">
     <div class="breadcrumb">
         <i class="fa fa-home"></i>
         <a href="http://marryyan.github.io">Paranoid</a>
         >
-        <span>归档</span>
+        <span>Less, Sass和Stylus</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/archives">归档</a>
+                <a href="/2018/01/13/Less, Sass和Stylus/">Less, Sass和Stylus</a>
             </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/Less/">Less</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2018-01-13
+            </span>
+            
         </div>
     </div>
     <!-- 小型设备详细文章 -->
@@ -210,35 +225,160 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/archives">归档</a>
+                    <a href="/2018/01/13/Less, Sass和Stylus/">Less, Sass和Stylus</a>
                 </h4>
             </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2018-01-13
+            </p>
+            <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/Less/">Less</a>
+                
+                
+                
+            </p>
         </center>
     </div>
-    <div class="content-article" style="margin-top: 30px;">
-        
-        
-            <h1 style="font-size: 24px; margin-top: 40px;">2018年</h1>
-            
-        <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
-            
-             
-             
-                        <a href="/2018/01/13/Less, Sass和Stylus/">Less, Sass和Stylus</a>
-                        <br>
-            
-             
-                        <a href="/2018/01/13/first/">first</a>
-                        <br>
-            
-             
-                        <a href="/2018/01/13/hello-world/">Hello World</a>
-                        <br>
-            
-                    </div>
-        
+    <div class="content-article">
+        <h1 id="Less-Sass和Stylus"><a href="#Less-Sass和Stylus" class="headerlink" title="Less, Sass和Stylus"></a>Less, Sass和Stylus</h1><h1 id="LESS"><a href="#LESS" class="headerlink" title="LESS"></a>LESS</h1><p>LESS 做为 CSS 的一种形式的扩展，在现有的 CSS 语法上，添加了很多额外的功能，拥有诸如 Sass 和 Stylus 之类的预处理器，它们也给我们提供了许多优于纯 CSS 的好处。</p>
+<ul>
+<li><p>变量 - 它可以让你更轻松的在整个样式表中定义和更改值   </p>
+</li>
+<li><p>Mixins - 可以让你重用或者组合样式，而且支持传递参数。</p>
+</li>
+<li><p>函数 - 它为你提供了一些方便的程序去操纵颜色，转换图像等。</p>
+</li>
+</ul>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>我们可以用 <code>@</code> 来声明一个变量来保存需要的样式</p>
+<blockquote>
+<p>@nice-blue: #5B83AD;<br>@light-blue: @nice-blue + #111;</p>
+<p>.header {<br>　　　　color: @light-blue;<br>　　　　}  </p>
+</blockquote>
+<p>转译输出后:</p>
+<blockquote>
+<p>.header {<br>　　　　color: #6c94be;<br>　　　　}</p>
+</blockquote>
+<p>当然也可以用已定义的变量来为其他变量定义:</p>
+<blockquote>
+<p>@str: “I am str.”;<br>@var: ‘str’;<br>content: @@var;  </p>
+</blockquote>
+<p>转译输出后:</p>
+<blockquote>
+<p>content: “I am str.”;  </p>
+</blockquote>
+<p><code>*请注意 LESS 中的变量为 “常量” ，所以只能定义一次.*</code></p>
+<h2 id="混合"><a href="#混合" class="headerlink" title="混合"></a>混合</h2><p>在 LESS 中我们可以将一些通用的属性集定义，然后在其他标签中去调用这个属性集. </p>
+<blockquote>
+<p>.border {<br>　　　　　border-top: solid 1px red;<br>　　　　　border-bottom: solid 2px black;<br>}  </p>
+</blockquote>
+<p>那如果我们现在需要在其他标签中引入这个属性集，那么我们只需要在任何标签中调用就可以了:</p>
+<blockquote>
+<p>menu a {<br>　　　　color: #111;<br>　　　　.border;<br>}<br>.post a {<br>　　　　color: red;<br>　　　　.border;<br>}  </p>
+</blockquote>
+<p>.border 里面的属性样式就会在 #menu a 和 .post a中体现出来。<br>转译输出后:</p>
+<blockquote>
+<p>menu a {<br>　　　　color: #111;<br>　　　　border-top: solid 1px red;<br>　　　　border-bottom: solid 2px black;<br>}<br>.post a {<br>　　　　color: blue;<br>　　　　border-top: solid 1px red;<br>　　　　border-bottom: solid 2px black;<br>}    </p>
+</blockquote>
+<p>任何 CSS class, id 或者 元素 属性集都可以以同样的方式引入.</p>
+<h2 id="带参数混合"><a href="#带参数混合" class="headerlink" title="带参数混合"></a>带参数混合</h2><p>在 LESS 中，你还可以像函数一样定义一个带参数的属性集合,它支持传入参数</p>
+<blockquote>
+<p>.border-radius (@radius) {<br>　　　　　　　　　　　　border-radius: @radius;<br>　　　　　　　　　　　　-moz-border-radius: @radius;<br>　　　　　　　　　　　　-webkit-border-radius: @radius;<br>}   </p>
+</blockquote>
+<p>然后像这样调用:</p>
+<blockquote>
+<p>header {<br>　　　　.border-radius(4px);<br>}<br>.button {<br>　　　　.border-radius(6px);<br>}  </p>
+</blockquote>
+<p>我们还可以给参数设置默认值:</p>
+<blockquote>
+<p>.border-radius (@radius: 5px) {<br>　　　　　　　　　　　　　　border-radius: @radius;<br>　　　　　　　　　　　　　　-moz-border-radius: @radius;<br>　　　　　　　　　　　　　　-webkit-border-radius: @radius;<br>}  </p>
+</blockquote>
+<p>所以现在如果像这样调用的话:</p>
+<blockquote>
+<p>header {<br>　　　　.border-radius;<br>}  </p>
+</blockquote>
+<p>radius的值就会是5px.</p>
+<h2 id="嵌套"><a href="#嵌套" class="headerlink" title="嵌套"></a>嵌套</h2><blockquote>
+<p>ul {<br>　　background-color: #03A9F4;<br>　　padding: 10px;<br>　　list-style: none;  </p>
+<p>　　li {<br>　　　　background-color: #fff;<br>　　　　border-radius: 3px;<br>　　　　margin: 10px 0;<br>　　}<br>}  </p>
+</blockquote>
+<p>编译成 CSS 代码：</p>
+<blockquote>
+<p>ul {<br>　　background-color: #03A9F4;<br>　　padding: 10px;<br>　　list-style: none;<br>}<br>ul li {<br>　　　background-color: #fff;<br>　　　border-radius: 3px;<br>　　　margin: 10px 0;<br>}  </p>
+</blockquote>
+<p>就像在其它高级语言中一样， Less 的变量根据范围接受它们的值。如果在指定范围内没有关于变量值的声明， less 会一直往上查找，直至找到离它最近的声明。</p>
+<h1 id="Stylus"><a href="#Stylus" class="headerlink" title="Stylus"></a>Stylus</h1><p>Stylus 与 Less 同样是 css 的预处理器。它没有封号、花括号、逗号也是可以执行的。</p>
+<p>例如： </p>
+<blockquote>
+<p>p<br>　margin 0<br>　padding 0 </p>
+</blockquote>
+<p>编译后为：</p>
+<blockquote>
+<p>p {<br>　margin: 0;<br>　padding: 0;<br>}  </p>
+</blockquote>
+<h2 id="变量-1"><a href="#变量-1" class="headerlink" title="变量"></a>变量</h2><p>Stylus 中也可以将常用的参数定义为变量，在需要的地方直接引用变量即可  </p>
+<p>例如：  </p>
+<blockquote>
+<p>font-size = 16px  //单一变量<br>font = 12px/16px ‘微软雅黑’  //变量表达式<br>$width = 16px    //可以带标示符  </p>
+<p>a<br>　font font               //直接引用单一变量<br>　width $width            //直接引用变量表达式<br>　margin-left (@width/2)  //可以用@来访问该属性当前对应的值  </p>
+</blockquote>
+<p>转译后为：  </p>
+<blockquote>
+<p>a {<br>　font: 0.75px ‘微软雅黑’;<br>　width: 16px;<br>　margin-left: 8px;<br>}  </p>
+</blockquote>
+<p>Stylus 中也可用 HTML 结构来表现 CSS 层级关系  </p>
+<blockquote>
+<p>body<br>　　color red<br>　　ul<br>　　　line-height 20px<br>　　　height 20px<br>　　　font-size 16px  </p>
+<p>　　　li<br>　　　　display inline-block<br>　　　　padding 10px<br>　　　　border 1px solid #ccc<br>　　　　text-align center </p>
+<p>　　　　a<br>　　　　color red<br>　　　　font-size 12px  </p>
+</blockquote>
+<p>转译后为：</p>
+<blockquote>
+<p>body {<br>　　　color: #f00;<br>}<br>body ul {<br>　　　　line-height: 20px;<br>　　　　height: 20px;<br>　　　　font-size: 16px;<br>}<br>body ul li {<br>　　　　　display: inline-block;<br>　　　　　padding: 10px;<br>　　　　　border: 1px solid #ccc;<br>　　　　　text-align: center;<br>}<br>body ul li a {<br>　　　　　　color: #f00;<br>　　　　　　font-size: 12px;<br>}  </p>
+</blockquote>
+<h1 id="SASS"><a href="#SASS" class="headerlink" title="SASS"></a>SASS</h1><p>SASS 的使用与前两者大体相同，在 SASS 中我们也可以来声明一个变量  </p>
+<blockquote>
+<p>$base-gap: 10px;<br>$base-color: #333;<br>.test {<br>　　　margin-top: $base-gap;<br>　　　color: $base-color;<br>}  </p>
+</blockquote>
+<p>在这里我们能看到 SASS 声明变量与 LESS 和 Stylus 还是有不同的，在<br>LESS 中，我们用 @ 符号来声明一个变量，在 Stylus 中，我们也可以用 @ 符号或者什么都不用。而在 SASS中 我们需要用 $ 符号来声明变量  </p>
+<p>在 SASS 中有默认变量这一说法：<br>如果这个变量被声明赋值了，那就用它声明的值，否则就用默认值。这在书写 SASS 库文件时非常有用。设置默认变量的方法也非常简单，只需在变量值后加上 <code>!default</code>  </p>
+<blockquote>
+<p>$color: #ccc;<br>$color: #000 !default;<br>p {<br>　color: $color;<br>}</p>
+</blockquote>
+<h3 id="嵌套方法"><a href="#嵌套方法" class="headerlink" title="嵌套方法"></a>嵌套方法</h3><blockquote>
+<p>.list {<br>　　margin-top: 10;<br>}<br>.list li {<br>　　　padding-left: 15px;<br>}<br>.list a {<br>　　　color: #333;<br>}<br>.list a:hover {<br>　　　　　　text-decoration: none;<br>}  </p>
+</blockquote>
+<p>用嵌套方法写就是：</p>
+<blockquote>
+<p>.list {<br>　　margin-top: 10px;<br>　　li {<br>　　　padding-left: 15px;<br>　　}<br>　　a {<br>　　　color: #333;<br>　　　&amp;:hover {<br>　　　　　　　text-decoration: none;<br>　　　}<br>　　}<br>}</p>
+</blockquote>
+<p>嵌套代码中的 <code>&amp;</code> 表示父元素选择器。</p>
+<h2 id="下载方法"><a href="#下载方法" class="headerlink" title="下载方法"></a>下载方法</h2><h3 id="LESS："><a href="#LESS：" class="headerlink" title="LESS："></a>LESS：</h3><p><code>npm install -g less</code> </p>
+<p>安装完成后，你将可以在任何打开的窗口中使用 lessc 命令，这个命令允许你将 .less 文件编译成纯 CSS 文件，像下面这样：</p>
+<p><code>lessc styles.less &gt; styles.css</code>  </p>
+<h3 id="Stylus："><a href="#Stylus：" class="headerlink" title="Stylus："></a>Stylus：</h3><p><code>npm install -g stylus</code>  </p>
+<p>建立一个<code>stylusExample/</code>，再在里面建立 src 目录专门存放 stylus 文件，在里面建立 example.styl 文件。然后在 stylusExample 目录下面执行下面命令</p>
+<p><code>stylus --compress src/</code></p>
+<p>输出 <code>compiled src/example.css</code> ，这个时候表示你生成成功了，带上 –compress 参数表示你生成压缩的CSS文件。</p>
+<p><code>stylus --css css/example.css css/out.styl</code> CSS转换成styl<br><code>stylus help box-shadow</code> CSS属性的帮助<br><code>stylus --css test.css</code> 输出基本名一致的.styl文件  </p>
+<h3 id="SASS-1"><a href="#SASS-1" class="headerlink" title="SASS"></a>SASS</h3><p>Sass 基于 Ruby 编写，所以安装 Sass 分2步：先安装Ruby的环境，再安装Sass。  </p>
+<h4 id="一、"><a href="#一、" class="headerlink" title="一、"></a>一、</h4><p>在 Ruby 官网选择电脑系统对应的版本下载、安装，建议默认路径即可。安装过程中注意勾选第二项：<code>Add Ruby executablesto your PATH</code>。安装完毕在命令行环境中通过 <code>ruby -v</code> 查看是否成功。  </p>
+<h4 id="二、"><a href="#二、" class="headerlink" title="二、"></a>二、</h4><p>Ruby安装成功之后，它自带的包管理工具 gem 也就安装好了。直接打开命令行通过gem 执行 Sass 安装命令，再查看是否安装成功：</p>
+<p><code>gem install sass</code>  </p>
+<p><code>sass -v</code>     查看是否安装成功</p>
+<p>　　经过简单的了解和尝试后，我比较喜欢 Stylus 得益于以下几点：</p>
+<ol>
+<li>简短直观，缩进让CSS的层次非常直观</li>
+<li>@ 属性引用可以减少维护量</li>
+<li>函数和Mixin，重用的利器　　</li>
+</ol>
+
     </div>
 </article>
+
+
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
@@ -355,21 +495,21 @@
         <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
             <ul class="nav nav-pills pills-gal">
                 <li class="">
-                    <a href="/archives/2018/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2018/01/13/Less, Sass和Stylus/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 <li class="">
-                    <a href="/archives/2018/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2018/01/13/Less, Sass和Stylus/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 <li class="">
-                    <a href="/archives/2018/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2018/01/13/Less, Sass和Stylus/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/first/" style="font-size: 16.606177716724922px;" class="tag-cloud-link">first</a>
+    <a href="/tags/first/" style="font-size: 17.789429895523423px;" class="tag-cloud-link">first</a>
     
-    <a href="/tags/Less/" style="font-size: 8.27678057039417px;" class="tag-cloud-link">Less</a>
+    <a href="/tags/Less/" style="font-size: 16.96081026588626px;" class="tag-cloud-link">Less</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
