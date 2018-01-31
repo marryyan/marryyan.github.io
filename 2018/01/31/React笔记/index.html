@@ -12,7 +12,7 @@
     
     
     
-    <title>categories | Paranoid</title>
+    <title>React笔记 | Paranoid</title>
     <link href=”http://marryyan.github.io“ rel=”prefetch” />
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -194,21 +194,34 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    <!-- 搜索页面(尽可能接近ZanBlog搜索功能) -->
-
-
+                    
 <article class="article well article-body" id="article">
+    <div class="breadcrumb">
+        <i class="fa fa-home"></i>
+        <a href="http://marryyan.github.io">Paranoid</a>
+        >
+        <span>React笔记</span>
+    </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/categories/index.html">categories</a>
+                <a href="/2018/01/31/React笔记/">React笔记</a>
             </h1>
         </div>
         <div class="tag-article">
+            
             <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2018-01-13
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/React/">React</a>
+                
             </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2018-01-31
+            </span>
+            
         </div>
     </div>
     <!-- 小型设备详细文章 -->
@@ -216,16 +229,144 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/categories/index.html">categories</a>
+                    <a href="/2018/01/31/React笔记/">React笔记</a>
                 </h4>
             </div>
             <p>
-                <i class="fa fa-calendar"></i> 2018-01-13
+                <i class="fa fa-calendar"></i> 2018-01-31
+            </p>
+            <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/React/">React</a>
+                
+                
+                
             </p>
         </center>
     </div>
     <div class="content-article">
-        
+        <h2 id="属性与状态"><a href="#属性与状态" class="headerlink" title="属性与状态"></a>属性与状态</h2><h4 id="什么是属性？"><a href="#什么是属性？" class="headerlink" title="什么是属性？"></a>什么是属性？</h4><p>props = properties 在英文中的意思就是属性。  </p>
+<p>属性的意思就是:<br>一个事物的性质与关系。属性往往是与生俱来的，无法自己改变。<br>在 React 中，我们可以简单的理解为: 属性是不可以修改的，准确说属性是不可以由组件自己进行修改的，组件的属性是由父组件传递进来的，相当于在组件出生的时候自己带的一些特性，这些是它自己无法决定的。  </p>
+<h4 id="属性的用法"><a href="#属性的用法" class="headerlink" title="属性的用法:"></a>属性的用法:</h4><p>一、在调用组件时，直接传入一个键值对  </p>
+<pre><code>&lt;HelloWorld name=  ? /&gt;
+</code></pre><p>在这里，键就是等号左边的 name 也就是属性的名，等号右边也就是传入的属性值。在等号右边可以写很多种内容。例: “Tim”, {123}, {[1, 2, 3]}, {variable}  </p>
+<p>二、展开，列如: </p>
+<pre><code>var props = {
+    one: &quot;123&quot;,
+    two: 321
+}
+&lt;HelloWorld {...props} /&gt;  
+</code></pre><p>首先，我们定义一个对象 props，对象中有两个属性，一个属性是 one，一个属性是 two，他们的值分别为字符串、数字。如果我们采用第一种键值对的命名方式，那么我们就需要写两个键值对，一个是 <code>one = { props.one }</code> ，第二个是 <code>two = { props.two }</code>，这样写起来比较麻烦，而且如果我们修改了 props 中的内容，就需要去修改属性中对应的赋值，这样降低了可维护性，并无法动态设置属性。  </p>
+<p>利用展开方法，React 就会自动把对象中的属性和值当做属性的赋值，所以 <code>&lt;HelloWorld /&gt;</code> 拿到的其实是两个属性，一个是 one，一个是two。假如我们把对象前 <code>...</code> 删掉，这样拿到的就是一个 props 对象，它还需要从中取出内部的属性和值。  </p>
+<p>三、setProps  </p>
+<pre><code>var instance = React.render(
+    &lt;HelloWorld&gt;&lt;/HelloWorld&gt;,
+    document.body    
+);
+instance.setProps({ name: &quot;Tim&quot; });  
+</code></pre><p>利用 React 提供的 setProps 函数，就像使用 setState 函数设置组件状态一样，setProps 可以设置组件的属性。setProps 接收的参数是一个对象，它会用这个对象来更新属性，但是在实际使用中并不常用。因为在组件内部修改属性违背了 React 的设计原则。在组件外部的话使用上面两种方式能更加方便的修改属性。  </p>
+<h4 id="什么是状态？"><a href="#什么是状态？" class="headerlink" title="什么是状态？"></a>什么是状态？</h4><p>在 React 中，使用 this.state 来引用。<br>state 本身就是状态的意思，所以不需要缩写。状态是指: 事物所处的状况。<br>状况也就是环境，是不断变化的，所以状态也是不断变化的。</p>
+<p>需要注意的是:   </p>
+<blockquote>
+<p>状态是由事物自行处理的，不断变化的。跟属性不一样，属性是天生具备的，事物没办法去直接修改。但是状态是事物可以直接进行操作的。  </p>
+</blockquote>
+<p>在 React 中，状态是事物的私有属性，一个事物的状态怎么样，都是由事物自己去决定的，他的父组件和子组件都没有权利也没有能力去修改它的状态。  </p>
+<h4 id="状态的用法"><a href="#状态的用法" class="headerlink" title="状态的用法:"></a>状态的用法:</h4><p>一、constructor: 初始化每个实例特有的状态<br>二、setState: setState 是 React 提供的函数，通过它可以更新组件的状态。  </p>
+<p>相比属性来说，状态的用法比较简单。  </p>
+<h3 id="属性与状态的对比"><a href="#属性与状态的对比" class="headerlink" title="属性与状态的对比"></a>属性与状态的对比</h3><p>通过上面我们了解到了属性和状态的含义和用法。那么属性和状态有什么相似点或者不同点呢？  </p>
+<h4 id="属性和状态的相似点"><a href="#属性和状态的相似点" class="headerlink" title="属性和状态的相似点:"></a>属性和状态的相似点:</h4><ol>
+<li>都是纯JS对象  </li>
+<li>他们都会触发 render 更新组件  </li>
+<li>都具有确定性  </li>
+</ol>
+<p>第一种: 纯 JS 对象，就是JS原生对象，在JS中还有宿主对象，例如 window，其实就是浏览器提供的宿主对象，并不是原生对象。属性和状态就是 JS 原生对象。  </p>
+<p>第二种: 状态和属性的变化都会触发 render 的更新。属性和状态的改变都会触发组件的整个流程，从处理属性到是否应该更新，到进行对比到最后的render 更新，会触发很多函数，我们可以在不同的函数中进行不同的操作。  </p>
+<p>第三种: 属性和状态都具有确定性。状态相同结果一定相同。也就是说给定了相同的状态或者属性，组件生成的应该都是相同的代码。  </p>
+<h4 id="属性和状态的对比"><a href="#属性和状态的对比" class="headerlink" title="属性和状态的对比:"></a>属性和状态的对比:</h4><blockquote>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th style="text-align:center">属性</th>
+<th style="text-align:center">状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>能否从父组件获取初始值？</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td>能否由父组件修改？</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td>能否在组件内部设置默认值？</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td>能否在组件内部修改？</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">√</td>
+</tr>
+<tr>
+<td>能否设置子组件的初始值？</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td>能否修改子组件的值？</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">×</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p>区分属性和状态有一种简单的办法: 就是看属性和状态保存的数据是否需要在运行时修改，如果运行时组件需要修改这个数据，那么这个数据就一定是状态。除此之外的所有数据都可以设置为属性。  </p>
+<h2 id="元素与组件"><a href="#元素与组件" class="headerlink" title="元素与组件"></a>元素与组件</h2><h4 id="元素"><a href="#元素" class="headerlink" title="元素:"></a>元素:</h4><p>React 中，元素是最小的基本单位，使用 JSX 语法可以创建一个 React 元素。  </p>
+<pre><code>const element = &lt;div className=&apos;element&apos;&gt;&lt;/div&gt;  
+</code></pre><p>React 元素代表所有你在屏幕上看到的东西。React 通过读取这些元素来构建 DOM 并保持数据内容一致。<br>React 元素不是真实的 DOM 元素，它仅仅是 js 的普通对象。<br>也可以用 React.createElement() 方法来构建 React 元素。  </p>
+<h4 id="组件"><a href="#组件" class="headerlink" title="组件:"></a>组件:</h4><p>组件是什么？组件是由元素构成的，React 中使用组件来封装界面模块，整个界面就是一个大的组件，我们在开发过程中不断优化和拆分界面组件。  </p>
+<h2 id="组件的类型"><a href="#组件的类型" class="headerlink" title="组件的类型"></a>组件的类型</h2><p>React 推出后，由于不同的原因，出现了三种定义 React 组件的方式。  </p>
+<ol>
+<li>函数式定义的无状态组件  </li>
+<li>使用es5原生方式 React.createClass 定义的组件  </li>
+<li>使用es6形式的 extends React.Component 定义的组件  </li>
+</ol>
+<p>上面三种组件有什么区别呢？  </p>
+<p>一、无状态组件  </p>
+<p>顾名思义，无状态组件就是无状态的组件。它是为了创建纯展示组件，这种组件只负责根据传入的 props 来展示，不涉及到 state 的操作。  </p>
+<pre><code>function SayHello (props) {
+    return &lt;div&gt;Hello, { props.name }&lt;/div&gt;
+}
+
+ReactDOM.render(&lt;SayHello name=&apos;Tom&apos; /&gt;, document.body)
+</code></pre><p>无状态组件的创建让代码可读性更高，并且减少了更多的多余代码，只有一个 render 方法，极大的增强了编写组件的便利。<br>由于是无状态组件，所以不会被实例化，这样也会让性能得到一定的提升。但是不能访问 this 对象，同样因为不需要组件生命周期管理和状态管理，所以该组件无法访问生命周期的方法。</p>
+<p>二、React.createClass  </p>
+<p>React.createClass 是 React 最开始推荐的创建组件的方式，使用ES5的JavaScript 来实现的 React 组件，同时也是三种方式最早，兼容性最好的方法。</p>
+<pre><code>var Greeting = React.createClass({
+    render: function() {
+        return &lt;h1&gt;Hello, {this.props.name}&lt;/h1&gt;;
+    }
+});
+</code></pre><p>与无状态组件相比，React.createClass 是创建有状态的组件，可以访问组件的生命周期方法，但是随着时间，也有一些问题暴露出来:  </p>
+<ul>
+<li>会自绑定函数方法，导致不必要的性能开销，增加代码过时的可能性。</li>
+<li>React.createClass 的 mixins 不够自然、直观。相比它 React.Component 更适合高阶组件，并且由于高阶组件是纯净的JavaScript，所以不用担心它们会被废弃。  </li>
+</ul>
+<p>三、React.Component  </p>
+<p>React.Component 是以ES6的形式来创建 React 组件的，是目前 React 推荐的创建有状态组件的方式。相比较与第二种方法，React.Component 可以很好的实现代码的复用。  </p>
+<pre><code>class Greeting extemds React.Component{
+    render () {
+         return &lt;h1&gt;Hello, {this.props.name}&lt;/h1&gt;;
+    }
+};
+</code></pre>
     </div>
 </article>
 
@@ -235,10 +376,9 @@
 <script>
 	if(!window.commentConfig) {
       window.commentConfig = {}
-      window.commentConfig.title = 'categories'
+      window.commentConfig.title = 'React笔记'
     }
 </script>
-
 
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
@@ -368,23 +508,23 @@
         <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
             <ul class="nav nav-pills pills-gal">
                 <li class="">
-                    <a href="/categories/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2018/01/31/React笔记/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 <li class="">
-                    <a href="/categories/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2018/01/31/React笔记/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 <li class="">
-                    <a href="/categories/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2018/01/31/React笔记/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/Less/" style="font-size: 11.539603038095073px;" class="tag-cloud-link">Less</a>
+    <a href="/tags/Less/" style="font-size: 10.299733573311016px;" class="tag-cloud-link">Less</a>
     
-    <a href="/tags/first/" style="font-size: 14.99681423588503px;" class="tag-cloud-link">first</a>
+    <a href="/tags/first/" style="font-size: 16.421738754068205px;" class="tag-cloud-link">first</a>
     
-    <a href="/tags/React/" style="font-size: 11.830623551716764px;" class="tag-cloud-link">React</a>
+    <a href="/tags/React/" style="font-size: 17.42663624068579px;" class="tag-cloud-link">React</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
