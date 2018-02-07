@@ -12,7 +12,7 @@
     
     
     
-    <title>Rollup 新一代打包工具？ | Paranoid</title>
+    <title>Paranoid</title>
     <link href=”http://marryyan.github.io“ rel=”prefetch” />
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -196,26 +196,19 @@
         <i class="fa fa-home"></i>
         <a href="http://marryyan.github.io">Paranoid</a>
         >
-        <span>Rollup 新一代打包工具？</span>
+        <span></span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/2018/01/30/Rollup/">Rollup 新一代打包工具？</a>
+                <a href="/2018/02/07/简单搭建React开发环境~/"></a>
             </h1>
         </div>
         <div class="tag-article">
             
             <span class="label label-gal">
-                <i class="fa fa-tags"></i>
-                
-                <a href="/tags/rollup/">rollup</a>
-                
-            </span>
-            
-            <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2018-01-30
+                <i class="fa fa-calendar"></i> 2018-02-07
             </span>
             
         </div>
@@ -225,86 +218,20 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/2018/01/30/Rollup/">Rollup 新一代打包工具？</a>
+                    <a href="/2018/02/07/简单搭建React开发环境~/"></a>
                 </h4>
             </div>
             <p>
-                <i class="fa fa-calendar"></i> 2018-01-30
+                <i class="fa fa-calendar"></i> 2018-02-07
             </p>
             <p>
-                
-                <i class="fa fa-tags"></i>
-                
-                <a href="/tags/rollup/">rollup</a>
-                
                 
                 
             </p>
         </center>
     </div>
     <div class="content-article">
-        <h2 id="什么是-Rollup"><a href="#什么是-Rollup" class="headerlink" title="什么是 Rollup?"></a>什么是 Rollup?</h2><p>用 Rollup 团队自己的话来将是:  </p>
-<blockquote>
-<p>Rollup 是下一代 JavaScript 模块打包工具。开发者可以在你的应用或库中使用 ES2015 模块，然后高效地将它们打包成一个单一文件用于浏览器和 Node.js 使用。  </p>
-</blockquote>
-<h2 id="Rollup-的闪光点"><a href="#Rollup-的闪光点" class="headerlink" title="Rollup 的闪光点"></a>Rollup 的闪光点</h2><p>Rollup 最让我们程序猿激动的地方就是能让打包文件体积很小。小到什么地步呢？相比其他 JavaScript 打包工具，Rollup 能打包出更小、更快的包。<br>因为 Rollup 是基于 ES2015 模块，比 CommonJS 模块机制更高效。正因如此，Rollup 的 <code>tree-shaking</code> 也变得更加容易( 只能对 ES 模块进行 tree-shaking )。<br>然而 <code>tree-shaking</code> 并不是 Rollup 在与其他打包工具相比的唯一的优势。  </p>
-<blockquote>
-<p>由于 Rollup 很高效，Webpack2 也支持 tree-shaking  </p>
-</blockquote>
-<h2 id="使用-Rollup-处理并打包-JavaScript-文件"><a href="#使用-Rollup-处理并打包-JavaScript-文件" class="headerlink" title="使用 Rollup 处理并打包 JavaScript 文件"></a>使用 Rollup 处理并打包 JavaScript 文件</h2><h3 id="安装-Rollup"><a href="#安装-Rollup" class="headerlink" title="安装 Rollup:"></a>安装 Rollup:</h3><p>首先，新建一个文件夹并全局安装 rollup</p>
-<blockquote>
-<p>npm i -g rollup</p>
-</blockquote>
-<p>下一步: 执行下列命令:  </p>
-<blockquote>
-<p>npm init -y<br>npm i rollup  </p>
-</blockquote>
-<p>然后，在当前文件夹下新建 rollup.config.js 文件，并在文件添加以下内容:  </p>
-<pre><code>export default {  
-　　entry: &apos;main.js&apos;,  
-　　output: {    
-       file: &apos;main.min.js&apos;,  
-       format: &apos;cjs&apos;  
-   }  
-}  
-</code></pre><ul>
-<li><code>entry</code>: 希望 Rollup 处理的文件路径。作为入口文件，初始化所有东西并启动应用。  </li>
-<li><code>file</code>: 编译之后的文件存放的路径。  </li>
-<li><code>format</code>: Rollup 输出格式。包括( amd / es6 / iife / umd )</li>
-</ul>
-<p>来看一下入口文件 main.js :  </p>
-<pre><code>import { cube } from &apos;./math.js&apos;;  
-console.log( cube( 5 ) ); 
-</code></pre><p>被引入文件 math.js 为:  </p>
-<pre><code>export function square (x) {  
-    return x * x;  
-}  
-
-export function cube (x) {  
-    return x * x * x;  
-}  
-</code></pre><p>通过 Rollup 打包之后为:  </p>
-<pre><code>&apos;use strict&apos;;  
-
-function cube (x) {  
-    return x * x * x;  
-}  
-
-console.log( cube( 5 ) );
-</code></pre><p>这里可以明显的看到 Rollup 中 Tree-shaking 的作用了，在我们创建的 math.js 文件中并未用到的 square 方法，在使用 Rollup 打包之后被干掉了。  </p>
-<p>到这里，安装和文件都已经准备好了，让我们来运行它:  </p>
-<blockquote>
-<p>./node_modules/.bin/rollup main.js -f cjs  </p>
-</blockquote>
-<p>因为我们并没有使用配置文件，所以输入上述命令，打包之后的内容会显示在终端上。<br>我们当然也可以使用配置文件:  </p>
-<blockquote>
-<p>./node_modules/.bin/rollup -c  </p>
-</blockquote>
-<p>如果你的配置文件名并不是 rollup.config.js 的话<em>( 例如: ‘rollup.config.dev.js’ )</em>  </p>
-<blockquote>
-<p>./node_modules/.bin/rollup -c rollup.config.dev.js  </p>
-</blockquote>
-
+        
     </div>
 </article>
 
@@ -314,7 +241,7 @@ console.log( cube( 5 ) );
 <script>
 	if(!window.commentConfig) {
       window.commentConfig = {}
-      window.commentConfig.title = 'Rollup 新一代打包工具？'
+      window.commentConfig.title = ''
     }
 </script>
 
@@ -458,23 +385,23 @@ console.log( cube( 5 ) );
         <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
             <ul class="nav nav-pills pills-gal">
                 <li class="">
-                    <a href="/2018/01/30/Rollup/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2018/02/07/简单搭建React开发环境~/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 <li class="">
-                    <a href="/2018/01/30/Rollup/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2018/02/07/简单搭建React开发环境~/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 <li class="">
-                    <a href="/2018/01/30/Rollup/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2018/02/07/简单搭建React开发环境~/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/Less/" style="font-size: 8.927575162381167px;" class="tag-cloud-link">Less</a>
+    <a href="/tags/Less/" style="font-size: 14.437354846025734px;" class="tag-cloud-link">Less</a>
     
-    <a href="/tags/rollup/" style="font-size: 13.755140436623574px;" class="tag-cloud-link">rollup</a>
+    <a href="/tags/rollup/" style="font-size: 10.16771634959554px;" class="tag-cloud-link">rollup</a>
     
-    <a href="/tags/React/" style="font-size: 13.480247873682675px;" class="tag-cloud-link">React</a>
+    <a href="/tags/React/" style="font-size: 17.647585892014412px;" class="tag-cloud-link">React</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">

@@ -12,7 +12,7 @@
     
     
     
-    <title>Rollup 新一代打包工具？ | Paranoid</title>
+    <title>搭建 React 项目开发环境 | Paranoid</title>
     <link href=”http://marryyan.github.io“ rel=”prefetch” />
 
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -196,26 +196,19 @@
         <i class="fa fa-home"></i>
         <a href="http://marryyan.github.io">Paranoid</a>
         >
-        <span>Rollup 新一代打包工具？</span>
+        <span>搭建 React 项目开发环境</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/2018/01/30/Rollup/">Rollup 新一代打包工具？</a>
+                <a href="/2018/02/07/简单搭建React开发环境/">搭建 React 项目开发环境</a>
             </h1>
         </div>
         <div class="tag-article">
             
             <span class="label label-gal">
-                <i class="fa fa-tags"></i>
-                
-                <a href="/tags/rollup/">rollup</a>
-                
-            </span>
-            
-            <span class="label label-gal">
-                <i class="fa fa-calendar"></i> 2018-01-30
+                <i class="fa fa-calendar"></i> 2018-02-07
             </span>
             
         </div>
@@ -225,85 +218,101 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/2018/01/30/Rollup/">Rollup 新一代打包工具？</a>
+                    <a href="/2018/02/07/简单搭建React开发环境/">搭建 React 项目开发环境</a>
                 </h4>
             </div>
             <p>
-                <i class="fa fa-calendar"></i> 2018-01-30
+                <i class="fa fa-calendar"></i> 2018-02-07
             </p>
             <p>
-                
-                <i class="fa fa-tags"></i>
-                
-                <a href="/tags/rollup/">rollup</a>
-                
                 
                 
             </p>
         </center>
     </div>
     <div class="content-article">
-        <h2 id="什么是-Rollup"><a href="#什么是-Rollup" class="headerlink" title="什么是 Rollup?"></a>什么是 Rollup?</h2><p>用 Rollup 团队自己的话来将是:  </p>
-<blockquote>
-<p>Rollup 是下一代 JavaScript 模块打包工具。开发者可以在你的应用或库中使用 ES2015 模块，然后高效地将它们打包成一个单一文件用于浏览器和 Node.js 使用。  </p>
-</blockquote>
-<h2 id="Rollup-的闪光点"><a href="#Rollup-的闪光点" class="headerlink" title="Rollup 的闪光点"></a>Rollup 的闪光点</h2><p>Rollup 最让我们程序猿激动的地方就是能让打包文件体积很小。小到什么地步呢？相比其他 JavaScript 打包工具，Rollup 能打包出更小、更快的包。<br>因为 Rollup 是基于 ES2015 模块，比 CommonJS 模块机制更高效。正因如此，Rollup 的 <code>tree-shaking</code> 也变得更加容易( 只能对 ES 模块进行 tree-shaking )。<br>然而 <code>tree-shaking</code> 并不是 Rollup 在与其他打包工具相比的唯一的优势。  </p>
-<blockquote>
-<p>由于 Rollup 很高效，Webpack2 也支持 tree-shaking  </p>
-</blockquote>
-<h2 id="使用-Rollup-处理并打包-JavaScript-文件"><a href="#使用-Rollup-处理并打包-JavaScript-文件" class="headerlink" title="使用 Rollup 处理并打包 JavaScript 文件"></a>使用 Rollup 处理并打包 JavaScript 文件</h2><h3 id="安装-Rollup"><a href="#安装-Rollup" class="headerlink" title="安装 Rollup:"></a>安装 Rollup:</h3><p>首先，新建一个文件夹并全局安装 rollup</p>
-<blockquote>
-<p>npm i -g rollup</p>
-</blockquote>
-<p>下一步: 执行下列命令:  </p>
-<blockquote>
-<p>npm init -y<br>npm i rollup  </p>
-</blockquote>
-<p>然后，在当前文件夹下新建 rollup.config.js 文件，并在文件添加以下内容:  </p>
-<pre><code>export default {  
-　　entry: &apos;main.js&apos;,  
-　　output: {    
-       file: &apos;main.min.js&apos;,  
-       format: &apos;cjs&apos;  
-   }  
-}  
-</code></pre><ul>
-<li><code>entry</code>: 希望 Rollup 处理的文件路径。作为入口文件，初始化所有东西并启动应用。  </li>
-<li><code>file</code>: 编译之后的文件存放的路径。  </li>
-<li><code>format</code>: Rollup 输出格式。包括( amd / es6 / iife / umd )</li>
-</ul>
-<p>来看一下入口文件 main.js :  </p>
-<pre><code>import { cube } from &apos;./math.js&apos;;  
-console.log( cube( 5 ) ); 
-</code></pre><p>被引入文件 math.js 为:  </p>
-<pre><code>export function square (x) {  
-    return x * x;  
-}  
+        <h3 id="第一步-初始化"><a href="#第一步-初始化" class="headerlink" title="第一步: 初始化"></a>第一步: 初始化</h3><ol>
+<li>新建文件目录并进入  </li>
+<li>yarn init 初始化  </li>
+<li>下载 webpack     <code>yarn add webpack --dev</code>  </li>
+</ol>
+<p>此时目录结构为  </p>
+<pre><code>┌ node_modules 
+├ src
+|   ├ index.js  
+└ package.json
+</code></pre><h3 id="第二步-配置-webpack"><a href="#第二步-配置-webpack" class="headerlink" title="第二步 配置 webpack"></a>第二步 配置 webpack</h3><p>  创建 webpack 的配置文件 webpack.config.js<br>     并添加以下代码</p>
+<pre><code>const path = requier(&quot;path&quot;);  
 
-export function cube (x) {  
-    return x * x * x;  
-}  
-</code></pre><p>通过 Rollup 打包之后为:  </p>
-<pre><code>&apos;use strict&apos;;  
-
-function cube (x) {  
-    return x * x * x;  
-}  
-
-console.log( cube( 5 ) );
-</code></pre><p>这里可以明显的看到 Rollup 中 Tree-shaking 的作用了，在我们创建的 math.js 文件中并未用到的 square 方法，在使用 Rollup 打包之后被干掉了。  </p>
-<p>到这里，安装和文件都已经准备好了，让我们来运行它:  </p>
-<blockquote>
-<p>./node_modules/.bin/rollup main.js -f cjs  </p>
-</blockquote>
-<p>因为我们并没有使用配置文件，所以输入上述命令，打包之后的内容会显示在终端上。<br>我们当然也可以使用配置文件:  </p>
-<blockquote>
-<p>./node_modules/.bin/rollup -c  </p>
-</blockquote>
-<p>如果你的配置文件名并不是 rollup.config.js 的话<em>( 例如: ‘rollup.config.dev.js’ )</em>  </p>
-<blockquote>
-<p>./node_modules/.bin/rollup -c rollup.config.dev.js  </p>
-</blockquote>
+module.exports = {  
+  entry: &quot;./src/index.js&quot;,  // 入口文件路径
+  output: {  // 出口
+    path: path.join(__dirname, &quot;dist&quot;),   // 出口文件路径
+    filename: &quot;build.js&quot;  // 出口文件名
+  }  
+}    
+</code></pre><h3 id="第三步-编译-JSX"><a href="#第三步-编译-JSX" class="headerlink" title="第三步 编译 JSX"></a>第三步 编译 JSX</h3><p>此时的文档还不支持 JSX 语法，所以我们需要通过 babel 来编译它。通过下载以下插件来达到我们的目的:  </p>
+<pre><code>yarn add @babel/preset-react @babel/preset-env @babel/core babel-loader@8.0.0-beta.0 --dev      
+</code></pre><p>下载好之后创建 .babelrc 文件，并写入以下内容:  </p>
+<pre><code>{
+  &quot;presets&quot;: [
+     &quot;@babel/present-env&quot;,  
+     &quot;@babel/present-react&quot;
+  ]
+}
+</code></pre><p>然后修改 webpack 的配置文件 webpack.config.js，在配置出口文件的下方添加以下内容:  </p>
+<pre><code>module: {
+  loaders: [
+    {
+      test: /\.js$/,  // 正则判断是否为 js 文件
+      loader: &quot;babel-loader&quot;,   // 使用 babel-loader
+      exclude: /node_modules/   // 除 node_modules 以外编译
+    }
+  ]
+}
+</code></pre><p>现在我们已经支持了 js 文件的编译打包，下面来配置下 有关 css 和图片的相关配置吧。  </p>
+<p>下载 <code>style-loader</code>,  <code>css-loader</code> 用来支持 css 文件打包  </p>
+<pre><code>yarn add style-loader css-loader --dev 
+</code></pre><p>下载 <code>url-loader</code> 来支持图片的引入</p>
+<pre><code>yarn add url-loader --dev 
+</code></pre><p>然后在配置文件中的 <code>loaders</code> 中添加  </p>
+<pre><code>{
+  test: /\.css$/,  // 正则判断是否为 css 文件
+  loader: [
+    &quot;style-loader&quot;,
+    &quot;css-loader&quot;
+  ]   // 使用 style-loader 和 css-loader
+},
+{
+  test: /\.png$|\.jpg$|\.jpeg$|\.svg/,
+  loader: &quot;url-loader&quot;
+}
+</code></pre><p>最后我们只需要在 index.js 中引入就可以了   </p>
+<pre><code>import css from &quot;./index.css&quot;  
+</code></pre><p>此时我们已经基本配置好 React 的开发环境了。但是下面的内容会让我们的开发过程更加舒服。       </p>
+<p>让我们来下载 <code>html-webpack-plugin</code> 用以将打包之后的文件自动插入到需要的模板中</p>
+<pre><code>yarn add http-webpack-plugin --dev  
+</code></pre><p>下载后在 webpack.config.js 中引入 </p>
+<pre><code>const HTMLWebpackPlugin = require(&quot;http-webpack-plugin&quot;)  
+</code></pre><p>然后在 module 块下方添加: </p>
+<pre><code>plugins: [
+  new HTMLWebpackPlugin({
+    template: &quot;./index.html&quot;,  // 模板路径
+    filename: &quot;index.html&quot;,   // 文件名
+    title: &quot;首页&quot;,   // 标题
+    inject: &quot;body&quot;   // 选择插入的位置 
+  })
+]
+</code></pre><p>现在我们已经实现了半自动了，可是我们还想全自动。怎么办呢？</p>
+<p>下载 <code>webpack-dev-server</code> 让它支持热更新   </p>
+<pre><code>yarn add webpack-dev-server --dev  
+</code></pre><p>此时我们直接运行可能会出现报错，不用担心，只需要修改下 package.json 文件，在设置协议的下方添加: </p>
+<pre><code>&quot;scripts&quot;: {
+  &quot;start&quot;: &quot;webpack-dev-server&quot;
+} 
+</code></pre><p>现在我们离成功只有一步之遥了，最后下载一下 react 和 react-dom ，然后在我们的 index.js 文件中引入，就可以正常使用啦。</p>
+<pre><code>yarn add react react-dom
+</code></pre><p>现在 <code>npm start</code> 来运行吧~</p>
 
     </div>
 </article>
@@ -314,7 +323,7 @@ console.log( cube( 5 ) );
 <script>
 	if(!window.commentConfig) {
       window.commentConfig = {}
-      window.commentConfig.title = 'Rollup 新一代打包工具？'
+      window.commentConfig.title = '搭建 React 项目开发环境'
     }
 </script>
 
@@ -458,23 +467,23 @@ console.log( cube( 5 ) );
         <div class="panel panel-gal hidden-xs" data-aos="fade-up" data-aos-duration="2000">
             <ul class="nav nav-pills pills-gal">
                 <li class="">
-                    <a href="/2018/01/30/Rollup/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2018/02/07/简单搭建React开发环境/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 <li class="">
-                    <a href="/2018/01/30/Rollup/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2018/02/07/简单搭建React开发环境/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 <li class="">
-                    <a href="/2018/01/30/Rollup/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2018/02/07/简单搭建React开发环境/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
             </ul>
             <div class="tab-content">
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/Less/" style="font-size: 8.927575162381167px;" class="tag-cloud-link">Less</a>
+    <a href="/tags/Less/" style="font-size: 18.270679810604715px;" class="tag-cloud-link">Less</a>
     
-    <a href="/tags/rollup/" style="font-size: 13.755140436623574px;" class="tag-cloud-link">rollup</a>
+    <a href="/tags/rollup/" style="font-size: 11.25670619496888px;" class="tag-cloud-link">rollup</a>
     
-    <a href="/tags/React/" style="font-size: 13.480247873682675px;" class="tag-cloud-link">React</a>
+    <a href="/tags/React/" style="font-size: 17.285388967715047px;" class="tag-cloud-link">React</a>
     
 </div>
                 <div class="friend-links tab-pane nav bs-sidenav fade" id="sidebar-friend-links">
